@@ -61,10 +61,10 @@ public class Partida {
         		mar[f][c]=TOCADO;
         	else {									//si se hunde cambio sus casillas a HUNDIDO el barco correspondiente y devuelvo su id
         		if(barcos.get(id).getOrientacion()=='V') {
-        			for(int i = f;i<barcos.get(id).getTamanyo();i++)
+        			for(int i = f;i<=barcos.get(id).getTamanyo();i++)
         				mar[i][barcos.get(id).getColumnaInicial()]=HUNDIDO;
         		}else {
-        			for(int i = c;i<barcos.get(id).getTamanyo();i++)
+        			for(int i = c;i<=barcos.get(id).getTamanyo();i++)
         				mar[barcos.get(id).getFilaInicial()][i]=HUNDIDO;
         		}
         		return id;
@@ -72,7 +72,8 @@ public class Partida {
         	
         }
         misDisparos[f][c]=true;
-        						//en caso de no ser barco es agua y no es necesario modificarlo
+        disparos++;
+        //en caso de no ser barco es agua y no es necesario modificarlo
         return mar[f][c];		//devuelvo el resultado de disparar en la casilla correspondiente
     }
     
