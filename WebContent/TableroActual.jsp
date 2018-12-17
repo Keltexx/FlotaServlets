@@ -54,7 +54,7 @@
 		out.println("Pagina de resultados del disparo en("+(fila+1)+","+(char) (col+65)+"): Ok! <br>");
 	}
 	
-	out.println("Barcos Navegando: " + partida.getBarcosQuedan());
+	out.println("Barcos Navegando: " + partida.getBarcosQuedan() + "<br>");
 	out.println("Barcos Hundidos: " + (6 - partida.getBarcosQuedan() + "<br>"));
 	out.println("Numero de disparos efectuados:  " + partida.getDisparosEfectuados() + "<br>");
 	
@@ -92,14 +92,17 @@
 			}
 			else
 				color="blanco";
-			out.println("<td id=\"" + color + "\""+"><input type=\"radio\" name=\"casilla\" value=\"" + i + "#" + j + "\"requiered> </td>");
+			out.println("<td id=\"" + color + "\""+"><input type=\"radio\" name=\"casilla\" value=\"" + i + "#" + j + "\"required "+ (partida.getBarcosQuedan()==0 ? "disabled" : "") +"> </td>");
 		}
 		out.println("</tr>");
 	}
 		
 	
 	out.println("</table>");
-	out.println("<input type=\"submit\" value=\"Submit\">");
+	if(partida.getBarcosQuedan()!=0)
+		out.println("<input type=\"submit\" value=\"Submit\">");
+	else
+		out.println("<br>");
 	out.println("</form>");
 	%>
 	<a href="">Muestra solucion</a><br>

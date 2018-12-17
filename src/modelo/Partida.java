@@ -55,24 +55,32 @@ public class Partida {
 	 * @return		resultado de marcar la casilla: AGUA, ya TOCADO, ya HUNDIDO, identidad del barco recien hundido
 	 */	
     public int pruebaCasilla(int f, int c) {
+    	misDisparos[f][c] = true;
+    	disparos++;
         if(mar[f][c]>=0 ) { 						//compruebo que la casilla es un barco
         	int id=mar[f][c];						// guardo su id para devolverlo en caso de hundirse
         	if(!barcos.get(mar[f][c]).tocaBarco())	//si no esta hundido cambio de id a tocado
         		mar[f][c]=TOCADO;
-        	else {									//si se hunde cambio sus casillas a HUNDIDO el barco correspondiente y devuelvo su id
-        		if(barcos.get(id).getOrientacion()=='V') {
-        			for(int i = f;i<=barcos.get(id).getTamanyo();i++)
-        				mar[i][barcos.get(id).getColumnaInicial()]=HUNDIDO;
+        	else {	//si se hunde cambio sus casillas a HUNDIDO el barco correspondiente y devuelvo su id
+        		Barco barco = barcos.get(id);
+        		int fInicial = barco.getFilaInicial();
+        		int cInicial = barco.getColumnaInicial();
+        		mar[f][c]=HUNDIDO;
+        		if(barco.getOrientacion()=='V') {
+        			for(int i = fInicial; i<barco.getTamanyo()+fInicial;i++){
+        				mar[i][barco.getColumnaInicial()]=HUNDIDO;
+        			}
         		}else {
-        			for(int i = c;i<=barcos.get(id).getTamanyo();i++)
-        				mar[barcos.get(id).getFilaInicial()][i]=HUNDIDO;
+        			for(int j = 0; j<barco.getTamanyo();j++){
+        				mar[barco.getFilaInicial()][j+cInicial]=HUNDIDO;
+        			}
+
         		}
+        		quedan--;
         		return id;
         	}
         	
         }
-        misDisparos[f][c]=true;
-        disparos++;
         //en caso de no ser barco es agua y no es necesario modificarlo
         return mar[f][c];		//devuelvo el resultado de disparar en la casilla correspondiente
     }
