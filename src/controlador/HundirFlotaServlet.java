@@ -28,14 +28,18 @@ public class HundirFlotaServlet extends HttpServlet{
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		//Cogemos la sesion actual
 		HttpSession sesion = request.getSession(true);
 		Partida partida = (Partida) sesion.getAttribute("partida");
 		boolean disparada = false;
 		
+		//Si no existia ninguna partida la creamos
 		if(partida == null){
 			partida = new Partida(8,8,6);
 		}
+		//Si existia una partida
 		else{
+			//Datos sobre la casilla disparada
 			if(request.getParameter("casilla")!=null){
 				String[] casillas = request.getParameter("casilla").split("#");
 				int fila = Integer.parseInt(casillas[0]);
@@ -44,6 +48,7 @@ public class HundirFlotaServlet extends HttpServlet{
 				partida.pruebaCasilla(fila, col);
 			}
 		}
+		//Guardamos los datos de partida y disparada y redirigimos al jsp TableroActual
 		sesion.setAttribute("partida", partida);
 		sesion.setAttribute("disparada", disparada);
 		RequestDispatcher vista = request.getRequestDispatcher("TableroActual.jsp");
