@@ -118,7 +118,7 @@
 	%>
 	
 	<!-- Opciones del juego que redirigen a servlets -->
-	<a href="/FlotaServlets/MostrarPartidaServlet">Muestra solucion</a><br>
+	<a href="/FlotaServlets/SolucionPartidaServlet">Muestra solucion</a><br>
 	<a href="/FlotaServlets/NuevaPartidaServlet">Nueva partida</a><br>
 	<a href="/FlotaServlets/SalirPartidaServlet">Salir</a><br>
 </body>

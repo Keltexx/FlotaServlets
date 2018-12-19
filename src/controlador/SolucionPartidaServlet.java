@@ -30,7 +30,7 @@ public class SolucionPartidaServlet extends HttpServlet {
 		//Cogemos la sesion actual y la invalidamos
 		HttpSession sesion = request.getSession(true);
 		Partida partida = (Partida) sesion.getAttribute("partida");
-		sesion.invalidate();
+		
 		
 		//Actualizamos la partida y redirigimos a jsp TableroSolucion
 		sesion.setAttribute("partida", partida);
