@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
     import="modelo.Partida"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Hundir la flota servlet</title>
 <style>
 	table{
@@ -71,7 +71,7 @@
 	out.println("<tr>");
 	out.println("<td></td>");
 	
-	//Añade la primera fila de letras
+	//AÃ±ade la primera fila de letras
 	for (int i=0; i<8; i++){
 		char letra = (char) (i+65);
 		out.println("<th>"+letra+"</th>");
@@ -81,9 +81,9 @@
 	
 	for(int i=0; i<8; i++){
 		out.println("<tr>");
-		//Añade la columna de numeros
+		//AÃ±ade la columna de numeros
 		out.println("<th>"+(i+1)+"</th>");
-		//Añadir el resto de celdas con radio buttom
+		//AÃ±adir el resto de celdas con radio buttom
 		for(int j=0; j<8; j++){
 			if(partida.casillaDisparada(i, j)){
 				//Si una casilla ha sido disparada se guarda en la variable color si habia agua o un barco tocado o hundido
@@ -118,7 +118,7 @@
 	%>
 	
 	<!-- Opciones del juego que redirigen a servlets -->
-	<a href="">Muestra solucion</a><br>
+	<a href="/FlotaServlets/MostrarPartidaServlet">Muestra solucion</a><br>
 	<a href="/FlotaServlets/NuevaPartidaServlet">Nueva partida</a><br>
 	<a href="/FlotaServlets/SalirPartidaServlet">Salir</a><br>
 </body>
